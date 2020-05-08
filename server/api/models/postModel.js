@@ -1,7 +1,7 @@
 class Post{
-    constructor(userName, messsage) {
+    constructor(userName, message) {
         this.userName = userName;
-        this.messsage = messsage;
+        this.message = message;
     }
 }
 

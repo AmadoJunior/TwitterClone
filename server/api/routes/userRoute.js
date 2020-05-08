@@ -66,7 +66,7 @@ router.post("/login/", async (req, res) => {
             } else {
                 const token = jwt.sign({
                     userId: user._id,
-                    userName: user.UserName,
+                    userName: user.userName,
                     email: user.email
                 }, process.env.JWT_KEY, {expiresIn: "1h"})
                 const userData = jwt.decode(token, process.env.JWT_KEY);
