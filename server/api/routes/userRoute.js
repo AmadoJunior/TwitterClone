@@ -10,13 +10,13 @@ const User = require("./../models/userModel")
 
 const router = express.Router();
 
-const loadCollection = async (collection) => {
+const loadCollection = async (collectionName) => {
     const url = "mongodb+srv://AmadoJunior:"+ process.env.DB_PASSWORD +"@cluster0-s3lnp.mongodb.net/test?retryWrites=true&w=majority";
     const dbName = "TwitterClone";
 
     try{
         const client = await mongoDb.MongoClient.connect(url, { useUnifiedTopology: true });
-        return client.db(dbName).collection(collection);
+        return client.db(dbName).collection(collectionName);
     } catch(err) {
         console.log("Database connection problem:\n" + err);
     }

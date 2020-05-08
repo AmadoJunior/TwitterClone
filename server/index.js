@@ -11,7 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Routes
 const userRoute = require("./api/routes/userRoute.js");
+const postRoute = require("./api/routes/postRoute.js");
 app.use("/api/user/" , userRoute);
+app.use("/api/post/", postRoute);
 
 //Uploads Public
 
