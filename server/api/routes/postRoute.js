@@ -23,7 +23,7 @@ const loadCollection = async (collectionName) => {
 
 //Routing
 const router = express.Router();
-router.get("/", async (req, res) => {
+router.get("/", checkAuth, async (req, res) => {
 
     const collection = await loadCollection("Posts");
     const postsArray = await collection.find({}).toArray();
@@ -32,6 +32,7 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", checkAuth, async (req, res) => {
+
     const collection = await loadCollection("Posts");
     const post = new Post(req.body.userName, req.body.message);
     try{
@@ -43,6 +44,21 @@ router.post("/", checkAuth, async (req, res) => {
         console.log(err);
         res.status(500).json({
             error: "Could not insert post"
+        })
+    }
+
+})
+
+router.delete("/:id", checkAuth, async(req, res) => {
+    const collection = await loadCollection("Posts");
+    try{
+        collection.deleteOne({_id: new mongoDb.ObjectID(req.params.id)});
+        res.status(200).json({
+            message: "Post deleted."
+        })
+    } catch(err){
+        res.status(500).json({
+            error: "Could not delete post"
         })
     }
 })
