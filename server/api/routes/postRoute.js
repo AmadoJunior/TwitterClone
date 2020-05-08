@@ -23,7 +23,7 @@ const loadCollection = async (collectionName) => {
 
 //Routing
 const router = express.Router();
-router.get("/", checkAuth, async (req, res) => {
+router.get("/", async (req, res) => {
 
     const collection = await loadCollection("Posts");
     const postsArray = await collection.find({}).toArray();
