@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 router.post("/", checkAuth, async (req, res) => {
 
     const collection = await loadCollection("Posts");
-    const post = new Post(req.body.userName, req.body.message);
+    const post = new Post(req.body.userName, req.body.profileImg, req.body.message);
     try{
         collection.insertOne(post);
         res.status(200).json({
